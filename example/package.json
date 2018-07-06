@@ -5,16 +5,31 @@
   "private": true,
   "license": "MIT",
   "dependencies": {
+    "bootstrap": "^4.1.0",
+    "fine-uploader": "^5.16.2",
+    "fine-uploader-wrappers": "^1.0.1",
+    "font-awesome": "^4.7.0",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-redux": "^5.0.7",
     "react-redux-uploader": "*",
-    "react-scripts": "^1.1.1"
+    "react-scripts": "^1.1.1",
+    "react-table": "^6.8.6",
+    "reactstrap": "^5.0.0",
+    "redux": "^3.7.2",
+    "redux-persist": "^5.9.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-jsx-a11y": "5.1.1",
+    "eslint-plugin-react": "^7.7.0"
   }
 }
