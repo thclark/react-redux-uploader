@@ -7,7 +7,7 @@
 [![Experimental!](https://img.shields.io/badge/wildly-experimental_%F0%9F%94%AC-ff69b4.svg)]()
 [![npm](https://img.shields.io/npm/v/react-redux-uploader.svg)](https://www.npmjs.com/package/react-redux-uploader)
 [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
-[![Build Status](https://travis-ci.org/thclark/react-redux-uploader.svg?branch=master)](https://travis-ci.org/thclark/react-redux-uploader)
+[![Build Status](https://travis-ci.com/thclark/react-redux-uploader.svg?branch=master)](https://travis-ci.com/thclark/react-redux-uploader)
 
 ## !! WORK IN PROGRESS !!
 
@@ -21,7 +21,7 @@ Allows you to build any file uploader UI imaginable.
 
 With an always-up-to-date and mappable state, you can tie any component to the upload progress or status, control the uploader via actions, reducers or in sagas.
 
-### Wait, but why? - working with `react-fine-uploader`  
+### Wait, but why? - working with `react-fine-uploader`
 
 [`react-fine-uploader`](https://github.com/FineUploader/react-fine-uploader) provides a number of high and low level components that can be used to render a gallery and various elemeents of an uploader UI.
 
@@ -50,7 +50,7 @@ Sorry, I've no time at all to develop and maintain historic compatibilities - yo
 
 ## Installing
 
-Dependencies that you will need to install yourself: 
+Dependencies that you will need to install yourself:
 - an A+/Promise spec compliant polyfill (for IE11)
 - React (a peer dependency)
 - [Fine Uploader](https://github.com/FineUploader/fine-uploader), which is also [available on npm](https://www.npmjs.com/package/fine-uploader)
