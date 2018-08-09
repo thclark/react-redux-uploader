@@ -104,7 +104,19 @@ class Progress extends Component {
 
   render() {
     const percentWidth = (this.state.bytesUploaded / this.state.totalSize) * 100 || 0
+
+    if (this.props.children) {
+      // Render whatever child you want, which will receive a value prop according to the percent complete
+      return (
+        <div>
+          {React.cloneElement(this.props.children, {
+            value: `${percentWidth}`,
+          })}
+        </div>
+      )
+    }
     return (
+      // Render a default progress bar, stylable by passing in the className prop
       <div hidden={this.state.hidden}>
         <div
           aria-valuemax="100"

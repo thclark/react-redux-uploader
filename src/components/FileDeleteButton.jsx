@@ -68,24 +68,34 @@ class FileDeleteButton extends Component {
   }
 
   render() {
-    const { children, onlyRenderIfDeletable, id, uploader, ...elementProps } = this.props // eslint-disable-line no-unused-vars
-    const content = children || 'Delete'
+    const { children, onlyRenderIfDeletable, id, uploader, ...rest } = this.props
 
     if (this.state.deletable || this.state.deleting || !onlyRenderIfDeletable) {
+      if (this.props.children) {
+        // Render whatever child you want, which will receive a disabled prop and an onClick callback
+        return (
+          <div>
+            {React.cloneElement(this.props.children, {
+              disabled: (!this.state.deletable || this.state.deleting),
+              onClick: (this.state.deletable && !this.state.deleting) ? this.onClick : null,
+            })}
+          </div>
+        )
+      }
       return (
+        // Render just a default button, stylable using className prop
         <button
           aria-label="delete"
-          className={`${this.props.className || ''}`}
           disabled={!this.state.deletable || this.state.deleting}
           onClick={(this.state.deletable && !this.state.deleting) ? this.onClick : null}
           type="button"
-          {...elementProps}
+          {...rest}
         >
-          { content }
+          Delete
         </button>
       )
     }
-
+    // Return null, because we shouldn't be rendering the element
     return null
   }
 }

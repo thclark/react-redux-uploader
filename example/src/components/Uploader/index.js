@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { FileStatus, Dropzone } from 'react-redux-uploader'
+import { FileDeleteButton, FileThumbnail, FileName, FileSize, FileStatus, Dropzone, Progress } from 'react-redux-uploader'
 
 import RFUFileInput from 'react-fine-uploader/file-input'
 import RFUThumbnail from 'react-fine-uploader/thumbnail'
@@ -19,10 +19,36 @@ import RFUXIcon from 'react-fine-uploader/gallery/x-icon'
 
 // This is where we add styling and layout - in our own application, not in the uploader library.
 // In this case, we just use reactstrap for bootstrap-styled components and react-table to list the files
-import { Col, Row, Card, Input, InputGroup, InputGroupAddon } from 'reactstrap'
+import { Col, Row, Card, Input, InputGroup, InputGroupAddon, Button } from 'reactstrap'
+import { Progress as ProgressBar } from 'reactstrap'
+
 import ReactTable from 'react-table'
 
 
+class MyFileProgressComponent extends Component {
+  render() {
+    console.log('MyFileProgressComponent rendering with props', this.props)
+    return (
+      // This receives a value prop (in percent) from the wrapper
+      <ProgressBar {...this.props} />
+    )
+  }
+}
+
+
+class MyFileDeleteButtonComponent extends Component {
+  render() {
+    console.log('MyFileDeleteButtonComponent rendering with props', this.props)
+    return (
+      // This receives `disabled` and `onClick` props. See how I'm using reactstrap for the button, and font awesome for the icon?
+      <Button {...this.props}>
+        <i className="fa fa-trash" />
+      </Button>
+    )
+  }
+}
+
+// This is just stuff for the table... don't worry about it
 const stringFilter = ({ filter, onChange }) => (
   <InputGroup>
     <InputGroupAddon addonType="prepend">
@@ -35,96 +61,16 @@ const stringFilter = ({ filter, onChange }) => (
     />
   </InputGroup>
 )
-
 const stringFilterMethod = (filter, row) => {
   console.log('Filtering string', filter, row)
   return row[filter.id].includes(filter.value)
 }
-
-
 const isFileGone = (statusToCheck, statusEnum) => {
   console.log('Checking file presence', statusToCheck, statusEnum)
   return [
     statusEnum.CANCELED,
     statusEnum.DELETED,
   ].indexOf(statusToCheck) >= 0
-}
-
-
-class FileProgressBar extends Component {
-  render() {
-    const { row, uploader, ...rest } = { ...this.props }
-    console.log('Rendering row fileProgress with props', this.props)
-    return (
-      <RFUProgressBar
-        id={row.id}
-        uploader={uploader}
-        {...rest}
-      />
-    )
-  }
-}
-
-
-class FileDeleteButton extends Component {
-  render() {
-    const { row, uploader, ...rest } = { ...this.props }
-    return (
-      <RFUDeleteButton
-        id={row.id}
-        uploader={uploader}
-        {...rest}
-      >
-        <i className="fa fa-trash" />
-      </RFUDeleteButton>
-    )
-  }
-}
-
-
-class FileThumbnail extends Component {
-  render() {
-    const { row, uploader, ...rest } = { ...this.props }
-    console.log('rendering thumbnail', row, uploader, rest)
-    return (
-      <RFUThumbnail
-        fromServer={row.fromServer}
-        id={row.id}
-        uploader={uploader}
-        {...rest}
-      />
-    )
-  }
-}
-
-
-class FileSize extends Component {
-  render() {
-    const { row, uploader, ...rest } = { ...this.props }
-    return (
-      <RFUFilesize
-        // className="react-fine-uploader-gallery-filesize"
-        id={row.id}
-        uploader={uploader}
-        {...rest}
-      />
-    )
-  }
-}
-
-
-class FileName extends Component {
-  render() {
-    const { row, uploader, ...rest } = { ...this.props }
-    return (
-      <RFUFilename
-        // className="react-fine-uploader-gallery-filesize"
-        id={row.id}
-        uploader={uploader}
-        {...rest}
-      />
-    )
-  }
 }
 
 
@@ -233,21 +179,22 @@ class Uploader extends Component {
     const columns = [
       {
         Header: '',
-        accessor: 'id',  // bodge to ensure id field is in the row
+        accessor: 'id',  // bodge to ensure id field is always in cell.row
         filterable: false,
-        Cell: cell => (<FileThumbnail row={cell.row} uploader={uploader} {...thumbnailProps} />),
+        Cell: cell => (<FileThumbnail {...cell.row} uploader={uploader} {...thumbnailProps} />),
+        maxWidth: 40,
       },
       {
         Header: 'Name',
         accessor: 'name',
-        Cell: cell => (<FileName row={cell.row} uploader={uploader} />),
+        Cell: cell => (<FileName {...cell.row} uploader={uploader} />),
         filterMethod: stringFilterMethod,
         Filter: stringFilter,
       },
       {
         Header: 'Status',
         accessor: 'status',
-        Cell: cell => (<FileStatus row={cell.row} uploader={uploader} />),
+        Cell: cell => (<FileStatus {...cell.row} uploader={uploader} />),
         sortMethod: null,
         filterMethod: (filter, row) => {
           const rowStatus = row.status ? row.status : 'queued'
@@ -291,19 +238,28 @@ class Uploader extends Component {
         Header: 'Size',
         accessor: 'size',
         filterable: false,
-        Cell: cell => (<FileSize row={cell.row} uploader={uploader} />),
+        Cell: cell => (<FileSize {...cell.row} uploader={uploader} />),
       },
-      // {
-      //   Header: 'Progress',
-      //   accessor: 'progress',
-      //   filterable: false,
-      //   Cell: cell => (<FileProgressBar row={cell.row} uploader={uploader} />),
-      // },
       {
-        Header: 'Delete',
-        accessor: 'id',
+        Header: '',
+        accessor: 'progress',
         filterable: false,
-        Cell: cell => (<FileDeleteButton row={cell.row} uploader={uploader} />),
+        Cell: cell => (
+          <Progress {...cell.row} uploader={uploader}>
+            <MyFileProgressComponent />
+          </Progress>
+        ),
+        maxWidth: 100,
+      },
+      {
+        Header: '',
+        accessor: 'delete',
+        filterable: false,
+        Cell: cell => (
+          <FileDeleteButton {...cell.row} uploader={uploader} onlyRenderIfDeletable={false}>
+            <MyFileDeleteButtonComponent />
+          </FileDeleteButton>
+        ),
         maxWidth: 50,
       },
     ]
