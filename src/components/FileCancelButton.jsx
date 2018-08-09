@@ -15,7 +15,7 @@ const isCancelable = (statusToCheck, statusEnum) => {
 }
 
 
-class CancelButton extends Component {
+class FileCancelButton extends Component {
   static propTypes = {
     children: PropTypes.node,
     id: PropTypes.number.isRequired,
@@ -86,4 +86,4 @@ class CancelButton extends Component {
 }
 
 
-export default CancelButton
+export default FileCancelButton
