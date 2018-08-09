@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 class WaitingPlaceholder extends Component {
   static propTypes = {
-    maxSize: PropTypes.number,
+    maxSize: PropTypes.number.isRequired,
   };
 
   render() {
