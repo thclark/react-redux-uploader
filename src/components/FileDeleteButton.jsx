@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-class DeleteButton extends Component {
+class FileDeleteButton extends Component {
     static propTypes = {
         children: PropTypes.node,
         id: PropTypes.number.isRequired,
@@ -89,4 +89,4 @@ const isDeletable = (statusToCheck, statusEnum) => {
     ].indexOf(statusToCheck) >= 0
 }
 
-export default DeleteButton
+export default FileDeleteButton
