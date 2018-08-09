@@ -112,7 +112,7 @@ class Progress extends Component {
           aria-valuenow={percentWidth}
           className={`${this.props.className || ''}`}
           role="progressbar"
-          style={{ width: percentWidth + '%' }}
+          style={{ width: `${percentWidth} %` }}
         />
       </div>
     )
