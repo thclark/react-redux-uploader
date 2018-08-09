@@ -13,6 +13,8 @@
 
 This is totally not ready for you to use. Entire chunks might be missing. It's not even at version 0.1 yet. EVERYTHING is subject to breaking changes.
 
+**CURRENT WIP:** I've pulled across all the components from react-fine-uploader, refactored them to meet a style guide and consistent naming conventions. Work is ongoing to refactor components into containers/wrappers, example usages are being shown in the example, which is working nicely.
+
 ## Overview
 
 Uses a [redux]() store to keep track of one or more [Fine Uploader](http://fineuploader.com) instances in a React app.
