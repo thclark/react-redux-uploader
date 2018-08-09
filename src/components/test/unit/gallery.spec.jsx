@@ -2,7 +2,7 @@ import React from 'react'
 import TestUtils from 'react-dom/test-utils'
 
 import Dropzone from 'src/dropzone'
-import FileInput from 'src/file-input'
+import FileInput from 'src/FileInput'
 import FineUploaderTraditional from 'fine-uploader-wrappers'
 import Gallery from 'src/gallery'
 
@@ -109,8 +109,8 @@ describe('<Gallery />', () => {
     })
 
     it('renders a tile for each initial file', done => {
-        const GalleryComponent = TestUtils.renderIntoDocument(<Gallery uploader={ uploader } />)        
-        
+        const GalleryComponent = TestUtils.renderIntoDocument(<Gallery uploader={ uploader } />)
+
         uploader.methods.addInitialFiles([sampleCannedFile])
 
         setTimeout(() => {

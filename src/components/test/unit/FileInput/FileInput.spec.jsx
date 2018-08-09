@@ -1,7 +1,7 @@
 import React from 'react'
 import TestUtils from 'react-dom/test-utils'
 
-import FileInput from 'src/file-input'
+import FileInput from 'src/FileInput'
 
 class DummyStylableElement extends React.Component {
     render() {
@@ -27,7 +27,7 @@ describe('<FileInput />', () => {
         }
         const FileInputComponent =
             TestUtils.renderIntoDocument(<FileInput uploader={ uploader }>click me</FileInput>)
-        const fileInputElement = TestUtils.findRenderedDOMComponentWithClass(FileInputComponent, 'file-input')
+        const fileInputElement = TestUtils.findRenderedDOMComponentWithClass(FileInputComponent, 'FileInput')
 
         TestUtils.Simulate.change(fileInputElement)
         expect(addFiles).toHaveBeenCalled()

@@ -1,4 +1,4 @@
-import FileInput from 'react-fine-uploader/file-input'
+import FileInput from 'react-fine-uploader/FileInput'
 import Thumbnail from 'react-fine-uploader/thumbnail'
 import CancelButton from 'react-fine-uploader/cancel-button'
 import DeleteButton from 'react-fine-uploader/delete-button'

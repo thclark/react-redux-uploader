@@ -5,7 +5,7 @@ import {CSSTransition, TransitionGroup} from 'react-transition-group'
 import CancelButton from '../cancel-button'
 import DeleteButton from '../delete-button'
 import Dropzone from '../dropzone'
-import FileInput from '../file-input'
+import FileInput from '../FileInput'
 import Filename from '../filename'
 import Filesize from '../filesize'
 import RetryButton from '../retry-button'
@@ -65,7 +65,7 @@ class Gallery extends Component {
                     const visibleFileIndex = this._findFileIndex(id)
                     if (visibleFileIndex < 0) {
                         visibleFiles.push({ id, fromServer: true })
-                    } 
+                    }
                 }
                 this._updateVisibleFileStatus(id, status)
             }
@@ -111,8 +111,8 @@ class Gallery extends Component {
                              uploader={ uploader }
                              { ...progressBarProps }
                 />
-                <TransitionGroup 
-                    component="ul" 
+                <TransitionGroup
+                    component="ul"
                     className='react-fine-uploader-gallery-files'
                     enter={!this.props.animationsDisabled}
                     exit={!this.props.animationsDisabled}
