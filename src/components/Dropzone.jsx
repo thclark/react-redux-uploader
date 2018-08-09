@@ -68,7 +68,7 @@ class Dropzone extends Component {
         processingDroppedFilesComplete: this.onProcessingDroppedFilesComplete.bind(this),
       },
       classes: {
-        dropActive: this.props.dropActiveClassName || '',
+        dropActive: this.props.dropActiveClassName,
       },
       dropZoneElements: [dropzoneEl],
     })
@@ -80,7 +80,7 @@ class Dropzone extends Component {
     return (
       <div
         {...getElementProps(this.props)}
-        // className={`${this.props.className || ''}`}
+        className={`${this.props.className || ''}`}
         ref={this.dropzoneRef}
       >
         { this.props.children }

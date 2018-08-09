@@ -146,7 +146,7 @@ class Uploader extends Component {
         this.setState({ visibleFiles })
       } else if (isFileGone(status, statusEnum)) {
         this.removeVisibleFile(id)
-      } else if (status === statusEnum.UPLOAD_SUCCESSFUL|| status === statusEnum.UPLOAD_FAILED) {
+      } else if (status === statusEnum.UPLOAD_SUCCESSFUL || status === statusEnum.UPLOAD_FAILED) {
         if (status === statusEnum.UPLOAD_SUCCESSFUL) {
           const visibleFileIndex = this.findFileIndex(id)
           if (visibleFileIndex < 0) {
@@ -221,7 +221,6 @@ class Uploader extends Component {
     const cancelButtonProps = { children: <RFUXIcon /> }
     const dropzoneProps = {
       disabled: false,
-      dropActiveClassName: '',
       multiple: true,
     }
     const fileInputProps = { multiple: true }
