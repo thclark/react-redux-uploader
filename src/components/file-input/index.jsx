@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import StyleableElement from './styleable-element'
+import StyleableFileInput from './StyleableFileInput'
 
 class FileInput extends Component {
     static propTypes = {
@@ -30,7 +30,7 @@ class FileInput extends Component {
         const { text, uploader, ...elementProps } = this.props // eslint-disable-line no-unused-vars
 
         return (
-            <StyleableElement { ...elementProps }
+            <StyleableFileInput { ...elementProps }
                               key={ this.state.key }
                               onChange={ this._onFilesSelected }
             >
@@ -39,7 +39,7 @@ class FileInput extends Component {
                         ? this.props.children
                         : <span>{ elementProps.multiple ? text.selectFiles : text.selectFile }</span>
                 }
-            </StyleableElement>
+            </StyleableFileInput>
         )
     }
 
