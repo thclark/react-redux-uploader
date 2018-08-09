@@ -59,7 +59,7 @@ class FileStatus extends Component {
 
     this.state = {
       status: '',
-      text: objectAssign({}, Status.defaultProps.text, props.text || {}),
+      text: objectAssign({}, FileStatus.defaultProps.text, props.text || {}),
     }
 
     this.onStatusChange = (id, oldStatus, newStatus) => {

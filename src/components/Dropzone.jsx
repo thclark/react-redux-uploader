@@ -19,6 +19,11 @@ class Dropzone extends Component {
     dropActiveClassName: '',
   }
 
+  constructor(props) {
+    super(props)
+    this.dropzoneRef = React.createRef()
+  }
+
   componentDidMount() {
     this.registerDropzone()
   }
@@ -52,8 +57,8 @@ class Dropzone extends Component {
     if (this.qqDropzone) {
       this.qqDropzone.dispose()
     }
-    // TODO remove string ref
-    const dropzoneEl = this.props.element || this.refs.dropZone
+
+    const dropzoneEl = this.dropzoneRef
 
     this.qqDropzone = new qq.DragAndDrop({
       allowMultipleItems: this.props.multiple,
@@ -72,12 +77,11 @@ class Dropzone extends Component {
   render() {
     const { uploader, ...elementProps } = this.props
     // TODO sort out this elementProps mess
-    // TODO remove deprecated string ref
     return (
       <div
         {...getElementProps(this.props)}
-        className={`${this.props.className || ''}`}
-        ref="dropZone"
+        // className={`${this.props.className || ''}`}
+        ref={this.dropzoneRef}
       >
         { this.props.children }
       </div>

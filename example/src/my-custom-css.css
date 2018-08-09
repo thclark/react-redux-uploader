@@ -1,0 +1,173 @@
+/* You should use whatever CSS preprocessor you're using in your main app,
+ *  we're just providing this here for the sake of example.
+ */
+
+body {
+  background-color: #ffffff; }
+
+label {
+    font-weight: 600 !important; }
+
+.card-borderless {
+    border: none; }
+
+.breadcrumb {
+    border-bottom: none; }
+
+.img-thumbnail {
+    padding: 0;
+}
+
+.img-micro-thumbnail {
+    padding: 0;
+    border-radius: 2px;
+    max-width: 40px;
+}
+
+.select-option-row {
+    margin: 0;
+    padding: 0;
+}
+
+.select-option-text {
+    margin-top: 0;
+    margin-bottom: 2px;
+    padding: 0;
+}
+
+.app-footer {
+    background: #ffffff;
+    border-top: none; }
+
+
+.row.row-gutter{
+    margin-bottom: 20px;
+}
+
+.tab-content {
+    border: none; }
+
+.big-icon {
+    font-size: 2em;
+}
+
+.status-card {
+    border-radius: 0;
+    padding: 0.5rem;
+    border: none;
+    border-top: 2px solid rgba(0, 0, 0, 0.125);
+    margin-bottom: 0.25rem;
+    margin-top: 0.25rem;
+}
+
+.table-img {
+    max-width: 3rem;
+}
+
+.app-header .nav-item .nav-link .img-avatar {
+    border-radius: 18px;
+    height: 36px;
+}
+
+.app-header .nav-item .nav-link {
+    padding-left: 20px;
+}
+
+
+/* Customisations to ReactTable */
+
+.ReactTable {
+    //border-radius: 4px;
+    //border-left: none;
+    //border-right: none;
+    //border-bottom: 2px solid #666666;
+    //border-top: 2px solid #666666;
+    border: none;
+}
+
+.ReactTable .-pagination .-btn {
+    color: #2f353a;
+    background: #ffffff;
+}
+
+.ReactTable .rt-thead.-header {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.ReactTable .rt-thead {
+    padding: inherit;
+}
+
+.ReactTable .rt-thead .rt-tr {
+    text-align: left;
+}
+.ReactTable .rt-thead .rt-th, .ReactTable .rt-thead .rt-td {
+    padding: 6px;
+}
+
+.ReactTable .rt-thead .rt-resizable-header-content {
+    font-weight: 600;
+}
+
+.ReactTable .rt-thead .rt-th.-sort-asc, .ReactTable .rt-thead .rt-td.-sort-asc {
+    -webkit-box-shadow: inset 0 2px 0 0 #3497db;
+    box-shadow: inset 0 2px 0 0 #3497db;
+}
+
+.ReactTable .rt-thead .rt-th.-sort-desc, .ReactTable .rt-thead .rt-td.-sort-desc {
+    -webkit-box-shadow: inset 0 -2px 0 0  #3497db;
+    box-shadow: inset 0 -2px 0 0  #3497db;
+}
+
+.ReactTable .rt-tbody {
+    border-top: 2px solid #848b92;
+    border-bottom: 2px solid #848b92;
+}
+
+.ReactTable .-pagination {
+    padding: 6px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: none;
+}
+
+
+/* Customisations to the fine uploader elements */
+
+[hidden] {
+    display: none !important;
+}
+
+.dropzone {
+    border: 1px dashed #c8ced3;
+    background-color: #ffffff;
+    min-height: 14rem;
+    overflow-y: hidden;
+    padding: 15px 15px 15px 15px;
+    position: relative;
+}
+
+.dropzone-content {
+    font-size: 1rem;
+    font-weight: 700;
+    opacity: 1;
+    color: #c8ced3;
+    text-transform: uppercase;
+}
+
+.dropzone-panel-item {
+    border-radius: 4px;
+    margin: 10px 10px 20px;
+    width: 100%;
+}
+
+.file-table-panel {
+    border: 1px dashed #c8ced3;
+    background-color: #ffffff;
+    width: 100%;
+    height: 100%;
+    margin: 10px 10px 10px 10px;
+    padding: 15px 15px 15px 15px;
+    position: relative;
+}
