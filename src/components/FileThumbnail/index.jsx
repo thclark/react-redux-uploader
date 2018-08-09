@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import Placeholder from './Placeholder'
+import Placeholder from './Placeholder.jsx'
 
-import NotAvailablePlaceholder from './NotAvailablePlaceholder'
-import WaitingPlaceholder from './WaitingPlaceholder'
+import NotAvailablePlaceholder from './NotAvailablePlaceholder.jsx'
+import WaitingPlaceholder from './WaitingPlaceholder.jsx'
 
 export const defaultMaxSize = 120
 export const notAvailableStatus = 'not-available'

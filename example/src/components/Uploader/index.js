@@ -1,21 +1,25 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import FileInput from 'react-fine-uploader/file-input'
-import Thumbnail from 'react-fine-uploader/thumbnail'
-import CancelButton from 'react-fine-uploader/cancel-button'
-import DeleteButton from 'react-fine-uploader/delete-button'
-import Dropzone from 'react-fine-uploader/dropzone'
-import Filename from 'react-fine-uploader/filename'
-import Filesize from 'react-fine-uploader/filesize'
-import PauseResumeButton from 'react-fine-uploader/pause-resume-button'
-import ProgressBar from 'react-fine-uploader/progress-bar'
-import RetryButton from 'react-fine-uploader/retry-button'
-import Status from 'react-fine-uploader/status'
-import PauseIcon from 'react-fine-uploader/gallery/pause-icon'
-import PlayIcon from 'react-fine-uploader/gallery/play-icon'
-import XIcon from 'react-fine-uploader/gallery/x-icon'
+import { FileStatus, Dropzone } from 'react-redux-uploader'
 
-// This is where we add styling - in our own application, not in the uploader library. In this case, we just use Reactstrap for a bootstrap-styled component
+import RFUFileInput from 'react-fine-uploader/file-input'
+import RFUThumbnail from 'react-fine-uploader/thumbnail'
+import RFUCancelButton from 'react-fine-uploader/cancel-button'
+import RFUDeleteButton from 'react-fine-uploader/delete-button'
+import RFUDropzone from 'react-fine-uploader/dropzone'
+import RFUFilename from 'react-fine-uploader/filename'
+import RFUFilesize from 'react-fine-uploader/filesize'
+import RFUPauseResumeButton from 'react-fine-uploader/pause-resume-button'
+import RFUProgressBar from 'react-fine-uploader/progress-bar'
+import RFURetryButton from 'react-fine-uploader/retry-button'
+import RFUStatus from 'react-fine-uploader/status'
+import RFUPauseIcon from 'react-fine-uploader/gallery/pause-icon'
+import RFUPlayIcon from 'react-fine-uploader/gallery/play-icon'
+import RFUXIcon from 'react-fine-uploader/gallery/x-icon'
+
+
+// This is where we add styling and layout - in our own application, not in the uploader library.
+// In this case, we just use reactstrap for bootstrap-styled components and react-table to list the files
 import { Col, Row, Card, Input, InputGroup, InputGroupAddon } from 'reactstrap'
 import ReactTable from 'react-table'
 
@@ -53,28 +57,11 @@ class FileProgressBar extends Component {
     const { row, uploader, ...rest } = { ...this.props }
     console.log('Rendering row fileProgress with props', this.props)
     return (
-      <ProgressBar
-        // className="react-fine-uploader-gallery-progress-bar"
+      <RFUProgressBar
         id={row.id}
         uploader={uploader}
         {...rest}
       />
-      // <span>
-      //   <span
-      //     style={{
-      //       color: row.value === 'relationship' ? '#ff2e00'
-      //         : row.value === 'complicated' ? '#ffbf00'
-      //           : '#57d500',
-      //       transition: 'all .3s ease',
-      //     }}
-      //   >
-      //   &#x25cf;
-      //   </span> {
-      //     row.value === 'relationship' ? 'In a relationship'
-      //       : row.value === 'complicated' ? `It's complicated`
-      //       : 'Single'
-      //   }
-      // </span>
     )
   }
 }
@@ -84,14 +71,13 @@ class FileDeleteButton extends Component {
   render() {
     const { row, uploader, ...rest } = { ...this.props }
     return (
-      <DeleteButton
-        // className="react-fine-uploader-gallery-delete-button"
+      <RFUDeleteButton
         id={row.id}
         uploader={uploader}
         {...rest}
       >
         <i className="fa fa-trash" />
-      </DeleteButton>
+      </RFUDeleteButton>
     )
   }
 }
@@ -102,8 +88,7 @@ class FileThumbnail extends Component {
     const { row, uploader, ...rest } = { ...this.props }
     console.log('rendering thumbnail', row, uploader, rest)
     return (
-      <Thumbnail
-        // className="react-fine-uploader-gallery-thumbnail"
+      <RFUThumbnail
         fromServer={row.fromServer}
         id={row.id}
         uploader={uploader}
@@ -118,7 +103,7 @@ class FileSize extends Component {
   render() {
     const { row, uploader, ...rest } = { ...this.props }
     return (
-      <Filesize
+      <RFUFilesize
         // className="react-fine-uploader-gallery-filesize"
         id={row.id}
         uploader={uploader}
@@ -133,23 +118,8 @@ class FileName extends Component {
   render() {
     const { row, uploader, ...rest } = { ...this.props }
     return (
-      <Filename
+      <RFUFilename
         // className="react-fine-uploader-gallery-filesize"
-        id={row.id}
-        uploader={uploader}
-        {...rest}
-      />
-    )
-  }
-}
-
-
-class FileStatus extends Component {
-  render() {
-    const { row, uploader, ...rest } = { ...this.props }
-    return (
-      <Status
-        // className="react-fine-uploader-gallery-status"
         id={row.id}
         uploader={uploader}
         {...rest}
@@ -248,7 +218,7 @@ class Uploader extends Component {
     const uploader = this.props.uploader
     const chunkingEnabled = uploader.options.chunking && uploader.options.chunking.enabled
     const deleteEnabled = uploader.options.deleteFile && uploader.options.deleteFile.enabled
-    const cancelButtonProps = { children: <XIcon /> }
+    const cancelButtonProps = { children: <RFUXIcon /> }
     const dropzoneProps = {
       disabled: false,
       dropActiveClassName: '',
@@ -256,10 +226,10 @@ class Uploader extends Component {
     }
     const fileInputProps = { multiple: true }
     const pauseResumeButtonProps = chunkingEnabled && {
-      pauseChildren: <PauseIcon />,
-      resumeChildren: <PlayIcon />,
+      pauseChildren: <RFUPauseIcon />,
+      resumeChildren: <RFUPlayIcon />,
     }
-    const retryButtonProps = { children: <PlayIcon /> }
+    const retryButtonProps = { children: <RFUPlayIcon /> }
     const thumbnailProps = { maxSize: 30 }
 
     const columns = [
@@ -268,7 +238,6 @@ class Uploader extends Component {
         accessor: 'id',  // bodge to ensure id field is in the row
         filterable: false,
         Cell: cell => (<FileThumbnail row={cell.row} uploader={uploader} {...thumbnailProps} />),
-        // maxWidth: 35,
       },
       {
         Header: 'Name',
@@ -359,11 +328,11 @@ class Uploader extends Component {
           </Row>
           <Row>
             <Col>
-              <FileInput className="btn btn-danger dropzone-panel-item" uploader={uploader} {...fileInputProps} >
+              <RFUFileInput className="btn btn-danger dropzone-panel-item" uploader={uploader} {...fileInputProps} >
                 <span>
                   <i className="fa fa-upload" /> Select Files
                 </span>
-              </FileInput>
+              </RFUFileInput>
             </Col>
           </Row>
         </Col>
@@ -384,7 +353,7 @@ class Uploader extends Component {
                                      {/*uploader={ uploader }*/}
                                      {/*{ ...pauseResumeButtonProps }*/}
 
-          <ProgressBar className="react-fine-uploader-gallery-total-progress-bar" uploader={uploader} />
+          <RFUProgressBar className="" uploader={uploader} />
         </Col>
 
       </Row>

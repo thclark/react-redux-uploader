@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import StyleableFileInput from './StyleableFileInput'
+import StyleableFileInput from './StyleableFileInput.jsx'
 
 
 const onFilesSelected = function(onChangeEvent) {
@@ -59,3 +59,4 @@ class FileInput extends Component {
 
 
 export default FileInput
+export { StyleableFileInput }

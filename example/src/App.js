@@ -6,7 +6,7 @@ export default class App extends Component {
   render () {
     return (
       <div>
-        <ExampleUploader />
+        <ExampleUploader uploader={this.props.uploader} />
       </div>
     )
   }
