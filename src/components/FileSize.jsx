@@ -37,7 +37,7 @@ const areUnitsEqual = (units1, units2) => {
 }
 
 
-class Filesize extends Component {
+class FileSize extends Component {
   static propTypes = {
     id: PropTypes.number.isRequired,
     units: PropTypes.shape({
@@ -116,4 +116,4 @@ class Filesize extends Component {
   }
 }
 
-export default Filesize
+export default FileSize

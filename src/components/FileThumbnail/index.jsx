@@ -10,7 +10,7 @@ export const defaultMaxSize = 120
 export const notAvailableStatus = 'not-available'
 export const waitingStatus = 'waiting'
 
-class Thumbnail extends Component {
+class FileThumbnail extends Component {
   static propTypes = {
     customResizer: PropTypes.func,
     fromServer: PropTypes.bool,
@@ -104,4 +104,4 @@ class Thumbnail extends Component {
   }
 }
 
-export default Thumbnail
+export default FileThumbnail

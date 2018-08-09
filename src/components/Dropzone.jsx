@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 
-class DropzoneElement extends Component {
+class Dropzone extends Component {
   static propTypes = {
     children: PropTypes.node,
     dropActiveClassName: PropTypes.string,
@@ -87,9 +87,9 @@ class DropzoneElement extends Component {
 
 const getElementProps = (actualProps) => {
   const actualPropsCopy = { ...actualProps }
-  const expectedPropNames = Object.keys(DropzoneElement.propTypes)
+  const expectedPropNames = Object.keys(Dropzone.propTypes)
   expectedPropNames.forEach(expectedPropName => delete actualPropsCopy[expectedPropName])
   return actualPropsCopy
 }
 
-export default DropzoneElement
+export default Dropzone

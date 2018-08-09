@@ -19,7 +19,7 @@ const getStatusToDisplay = ({ displayMap, status }) => {
 }
 
 
-class Status extends Component {
+class FileStatus extends Component {
   static propTypes = {
     id: PropTypes.number.isRequired,
     className: PropTypes.string,
@@ -106,4 +106,4 @@ class Status extends Component {
 }
 
 
-export default Status
+export default FileStatus

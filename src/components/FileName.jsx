@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 
-class Filename extends Component {
+class FileName extends Component {
   static propTypes = {
     id: PropTypes.number.isRequired,
     uploader: PropTypes.object.isRequired,
@@ -41,4 +41,4 @@ class Filename extends Component {
   }
 }
 
-export default Filename
+export default FileName
