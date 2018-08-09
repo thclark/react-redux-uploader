@@ -58,7 +58,7 @@ class Dropzone extends Component {
       this.qqDropzone.dispose()
     }
 
-    const dropzoneEl = this.dropzoneRef
+    const dropzoneEl = this.props.element || this.dropzoneRef
 
     this.qqDropzone = new qq.DragAndDrop({
       allowMultipleItems: this.props.multiple,
