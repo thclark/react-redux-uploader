@@ -1,33 +1,21 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { FileDeleteButton, FileThumbnail, FileName, FileSize, FileStatus, Dropzone, Progress } from 'react-redux-uploader'
-
-import RFUFileInput from 'react-fine-uploader/file-input'
-import RFUThumbnail from 'react-fine-uploader/thumbnail'
-import RFUCancelButton from 'react-fine-uploader/cancel-button'
-import RFUDeleteButton from 'react-fine-uploader/delete-button'
-import RFUFilename from 'react-fine-uploader/filename'
-import RFUFilesize from 'react-fine-uploader/filesize'
-import RFUPauseResumeButton from 'react-fine-uploader/pause-resume-button'
-import RFUProgressBar from 'react-fine-uploader/progress-bar'
-import RFURetryButton from 'react-fine-uploader/retry-button'
-import RFUStatus from 'react-fine-uploader/status'
-import RFUPauseIcon from 'react-fine-uploader/gallery/pause-icon'
-import RFUPlayIcon from 'react-fine-uploader/gallery/play-icon'
-import RFUXIcon from 'react-fine-uploader/gallery/x-icon'
+import { FileInput, FileDeleteButton, FileThumbnail, FileName, FileSize, FileStatus, Dropzone, Progress } from 'react-redux-uploader'
 
 
 // This is where we add styling and layout - in our own application, not in the uploader library.
-// In this case, we just use reactstrap for bootstrap-styled components and react-table to list the files
-import { Col, Row, Card, Input, InputGroup, InputGroupAddon, Button } from 'reactstrap'
+// In this case, we just use reactstrap for bootstrap-styled components and react-table to list the files.
+// We can also define our own components entirely
+
+import { Col, Row, Card, Input, InputGroup, InputGroupAddon, Button} from 'reactstrap'
 import { Progress as ProgressBar } from 'reactstrap'
 
 import ReactTable from 'react-table'
 
 
 class MyFileProgressComponent extends Component {
+  // Just done as an example of how to use a custom component
   render() {
-    console.log('MyFileProgressComponent rendering with props', this.props)
     return (
       // This receives a value prop (in percent) from the wrapper
       <ProgressBar {...this.props} />
@@ -38,7 +26,6 @@ class MyFileProgressComponent extends Component {
 
 class MyFileDeleteButtonComponent extends Component {
   render() {
-    console.log('MyFileDeleteButtonComponent rendering with props', this.props)
     return (
       // This receives `disabled` and `onClick` props. See how I'm using reactstrap for the button, and font awesome for the icon?
       <Button {...this.props}>
@@ -47,6 +34,7 @@ class MyFileDeleteButtonComponent extends Component {
     )
   }
 }
+
 
 // This is just stuff for the table... don't worry about it
 const stringFilter = ({ filter, onChange }) => (
@@ -74,7 +62,7 @@ const isFileGone = (statusToCheck, statusEnum) => {
 }
 
 
-class Uploader extends Component {
+class MyUploaderComponent extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -163,17 +151,17 @@ class Uploader extends Component {
     const uploader = this.props.uploader
     const chunkingEnabled = uploader.options.chunking && uploader.options.chunking.enabled
     const deleteEnabled = uploader.options.deleteFile && uploader.options.deleteFile.enabled
-    const cancelButtonProps = { children: <RFUXIcon /> }
+    const cancelButtonProps = { children: <i className="fa fa-cross" /> }
     const dropzoneProps = {
       disabled: false,
       multiple: true,
     }
     const fileInputProps = { multiple: true }
     const pauseResumeButtonProps = chunkingEnabled && {
-      pauseChildren: <RFUPauseIcon />,
-      resumeChildren: <RFUPlayIcon />,
+      pauseChildren: <i className="fa fa-pause" />,
+      resumeChildren: <i className="fa fa-play" />,
     }
-    const retryButtonProps = { children: <RFUPlayIcon /> }
+    const retryButtonProps = { children: <i className="fa fa-sync" /> }
     const thumbnailProps = { maxSize: 30 }
 
     const columns = [
@@ -256,7 +244,7 @@ class Uploader extends Component {
         accessor: 'delete',
         filterable: false,
         Cell: cell => (
-          <FileDeleteButton {...cell.row} uploader={uploader} onlyRenderIfDeletable={false}>
+          <FileDeleteButton {...cell.row} uploader={uploader} onlyRenderIfDeletable={true}>
             <MyFileDeleteButtonComponent />
           </FileDeleteButton>
         ),
@@ -264,7 +252,6 @@ class Uploader extends Component {
       },
     ]
 
-    console.log('re-rendering with visibleFiles', this.state.visibleFiles)
     return (
       <Row>
         <Col md={{ size: 3 }}>
@@ -282,11 +269,11 @@ class Uploader extends Component {
           </Row>
           <Row>
             <Col>
-              <RFUFileInput className="btn btn-danger dropzone-panel-item" uploader={uploader} {...fileInputProps} >
+              <FileInput className="btn btn-danger dropzone-panel-item" uploader={uploader} {...fileInputProps} >
                 <span>
                   <i className="fa fa-upload" /> Select Files
                 </span>
-              </RFUFileInput>
+              </FileInput>
             </Col>
           </Row>
         </Col>
@@ -300,25 +287,20 @@ class Uploader extends Component {
               filterable
               className="-highlight"
             />
+            <Progress uploader={uploader} >
+              <ProgressBar />
+            </Progress>
           </Card>
-
-                  {/*<PauseResumeButton className='react-fine-uploader-gallery-pause-resume-button'*/}
-                                     {/*id={ id }*/}
-                                     {/*uploader={ uploader }*/}
-                                     {/*{ ...pauseResumeButtonProps }*/}
-
-          <RFUProgressBar className="" uploader={uploader} />
         </Col>
-
       </Row>
     )
   }
 }
 
 
-Uploader.propTypes = {
+MyUploaderComponent.propTypes = {
   uploader: PropTypes.object.isRequired,
 }
 
 
-export default Uploader
+export default MyUploaderComponent

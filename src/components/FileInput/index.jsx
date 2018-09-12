@@ -13,21 +13,6 @@ const newKey = () => Date.now()
 
 
 class FileInput extends Component {
-  static propTypes = {
-    text: PropTypes.shape({
-      selectFile: PropTypes.string,
-      selectFiles: PropTypes.string,
-    }),
-    uploader: PropTypes.object.isRequired,
-  };
-
-  static defaultProps = {
-    text: {
-      selectFile: 'Select a File',
-      selectFiles: 'Select Files',
-    },
-  }
-
   constructor() {
     super()
     this.state = { key: newKey() }
@@ -40,7 +25,6 @@ class FileInput extends Component {
 
   render() {
     const { text, uploader, ...elementProps } = this.props // eslint-disable-line no-unused-vars
-
     return (
       <StyleableFileInput
         {...elementProps}
@@ -57,6 +41,19 @@ class FileInput extends Component {
   }
 }
 
+FileInput.propTypes = {
+  text: PropTypes.shape({
+    selectFile: PropTypes.string,
+    selectFiles: PropTypes.string,
+  }),
+  uploader: PropTypes.object.isRequired,
+}
+
+FileInput.defaultProps = {
+  text: {
+    selectFile: 'Select a File',
+    selectFiles: 'Select Files',
+  },
+}
 
 export default FileInput
-export { StyleableFileInput }

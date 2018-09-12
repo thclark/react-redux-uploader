@@ -9,29 +9,39 @@
 [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 [![Build Status](https://travis-ci.com/thclark/react-redux-uploader.svg?branch=master)](https://travis-ci.com/thclark/react-redux-uploader)
 
-## !! WORK IN PROGRESS !!
+## Project Status
 
-This is totally not ready for you to use. Entire chunks might be missing. It's not even at version 0.1 yet. EVERYTHING is subject to breaking changes.
+This work does not yet fully achieve its objective. It has reached the useful stage of allowing much easier construction of custom-styled uploaders, meriting a release.
 
-**CURRENT WIP:** I've pulled across all the components from react-fine-uploader, refactored them to meet a style guide and consistent naming conventions. Work is ongoing to refactor components into containers/wrappers, example usages are being shown in the example, which is working nicely.
+### TODOs
+
+- [x] I've pulled across all the components from react-fine-uploader, which serves as a basis for what's needed here.
+- [x] Refactor them to meet a style guide and consistent naming conventions.
+- [x] Remove all hard coded styling (except style overlay for the input button)
+- [x] Create working example uploader in the `/examples` folder, styled cleanly and easily, entirely in that example, using bootstrap
+
+** At this stage, the library is useful. It allows you to build custom UIs without overloading hard coded styling. Next up:**
+
+- [ ] Refactor components into containers/wrappers
+- [ ] Hook callbacks to the uploader to synchronise a redux state with the uploader.
+- [ ] Update component values on the redux state to simplify construction and update of the UI.
+
 
 ## Overview
 
-Uses a [redux]() store to keep track of one or more [Fine Uploader](http://fineuploader.com) instances in a React app.
-
 Allows you to build any file uploader UI imaginable.
 
-With an always-up-to-date and mappable state, you can tie any component to the upload progress or status, control the uploader via actions, reducers or in sagas.
+With an always-up-to-date and mappable state, you can tie any component to the upload progress or status, and control the uploader via actions, reducers or in sagas.
 
 ### Wait, but why? - working with `react-fine-uploader`
 
-[`react-fine-uploader`](https://github.com/FineUploader/react-fine-uploader) provides a number of high and low level components that can be used to render a gallery and various elemeents of an uploader UI.
+[`react-fine-uploader`](https://github.com/FineUploader/react-fine-uploader) provides a number of high and low level components that can be used to render a gallery and various elements of an uploader UI.
 
 Unfortunately, this library has no separation of responsibility in terms of rendering components and updating state. Component styling is also extremely opinionated, as you don't get full control over the classes applied without fully overriding the built in css.
 
 For complex UI components, or where you want full control of styling, this becomes quickly unwieldy.
 
-However, `react-fine-uploader` does provide an extremely powerful wrapper for the Fine Uploader library. This wrapper provides features such as the ability to dynamically register multiple event/callback listeners, which this library builds on to instantiate and maintain the redux state.
+However, `react-fine-uploader` does provide an extremely powerful wrapper for the Fine Uploader library. This wrapper provides features such as the ability to dynamically register multiple event/callback listeners, so here, we build on that to instantiate and maintain the redux state.
 
 ## Quick Reference
 - [Overview](#overview)
@@ -64,6 +74,8 @@ Do `npm install react-redux-uploader` then see below for adding uploaders.
 ## Accessing State
 
 ## Usage Examples
+
+See the `/examples` folder for how to use, or simply import the example TableUploader
 
 ## With great thanks to...
 
