@@ -1,10 +1,12 @@
 {
   "name": "react-redux-uploader",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Ties the jsfine uploader to the redux store, allowing you to easily customise and interact with an uploader component in React.",
   "author": "thclark",
   "license": "MIT",
-  "repository": { "url": "https://www.github.com/thclark/react-redux-uploader"},
+  "repository": {
+    "url": "https://www.github.com/thclark/react-redux-uploader"
+  },
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
